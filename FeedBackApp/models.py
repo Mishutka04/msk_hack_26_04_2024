@@ -23,11 +23,17 @@ class EventDescription(models.Model):
     description = models.CharField(max_length=250)
     event = models.ForeignKey('Event', on_delete=models.PROTECT)
 
+    def __str__(self):
+        return self.name
+
 
 class Question(models.Model):
     id = models.AutoField(primary_key=True)
     question = models.CharField(max_length=200)
     event = models.ForeignKey('EventDescription', on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.question
 
 
 class Answer(models.Model):
@@ -37,6 +43,9 @@ class Answer(models.Model):
     objects_class = models.IntegerField(blank=True, default=0)
     question = models.ForeignKey('Question', on_delete=models.PROTECT)
     user = models.ForeignKey('User', on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.answer
 
 
 
